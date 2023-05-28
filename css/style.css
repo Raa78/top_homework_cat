@@ -1,0 +1,325 @@
+
+body{
+	margin: 0;
+	background: #fff;
+}
+
+
+.cat {
+  position: relative;
+
+  width: 300px;
+  height: 300px;
+
+  top: 100px;
+  left: 50%;
+  margin-left: -150px;
+
+  animation: cat 1s ease 15s;
+  animation-fill-mode: forwards;
+}
+
+
+@keyframes cat {
+  100% {
+    top: 50px;
+    left: 50%;
+    transform: rotate(-0.08turn);
+  }
+  /* 90%{
+    transform: rotate(0.3turn);
+    transform: translate(100px, -30px);
+    opacity: 1;
+  }
+  100%{
+    transform: translate(100px, -30px);
+    opacity: 0;
+  } */
+}
+
+.cat .head {
+  width: 70px;
+  height: 70px;
+  background-color: #000;
+  border-radius: 50%;
+
+  position: absolute;
+
+  top: 0px;
+  left: 126px;
+
+  z-index: 9999;
+
+  animation: head 0.5s ease 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes head {
+  100% {
+    top: 12px;
+  }
+}
+
+.head .ears {
+  overflow: hidden;
+}
+
+.head .ear_left,
+.head .ear_right {
+  width: 15px;
+  height: 15px;
+
+  top: -2px;
+
+  position: absolute;
+
+  background: #000;
+}
+
+.head .ear_left {
+  margin-left: 10px;
+  transform: skew(30deg) rotate(25deg);
+  margin-top: 2px;
+
+  animation: ears_left 0.2s ease 1.5s forwards;
+}
+
+@keyframes ears_left {
+  100% {
+    top: 5px;
+    transform: skew(50deg) rotate(10deg);
+  }
+}
+
+.head .ear_right {
+  margin-left: 44px;
+  transform: skew(-30deg) rotate(-25deg);
+  margin-top: 2px;
+
+  animation: ears_right 0.2s ease 1.5s forwards;
+}
+
+@keyframes ears_right {
+  100% {
+    margin-top: 3px;
+    margin-left: 46px;
+    transform: skew(40deg, 35deg) rotate(30deg);
+  }
+}
+
+.head .eyes {
+  overflow: hidden;
+}
+
+.head .eye_left,
+.head .eye_right {
+  background: #fff;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 23px;
+
+  float: left;
+
+  animation: eyes 1s ease 3s;
+}
+
+.head .eye_left {
+  margin-left: 22px;
+
+}
+
+.head .eye_right {
+  margin-left: 16px;
+
+}
+
+@keyframes eyes {
+  0% {
+    height: 10px;
+    transform: translateY(0);
+  }
+  50% {
+    height: 5px;
+    transform: translateY(4px);
+
+  }
+  100% {
+    height: 10px;
+    transform: translateY(0);
+  }
+}
+
+
+.cat .body {
+  width: 120px;
+  height: 70px;
+  background-color: #000;
+  border-radius: 50px;
+
+  position: absolute;
+
+  top: 32px;
+  left: 50px;
+}
+
+.body svg {
+  animation: circle 0.5s ease-in-out 12s;
+  animation-iteration-count: 3;
+
+}
+
+@keyframes circle {
+0% { /* ↓ → */
+  transform: translate(-2px, -2px);
+}
+25% { /* ↑ */
+  transform: translate(-2px, -4px);
+}
+50% {  /* ↑ ← */
+  transform: translate(-4px, -4px);
+
+}
+75% { /* ← ↓ */
+  transform: translate(-4px, -2px);
+
+}
+100% { /* ↓ → */
+  transform: translate(-2px, -2px);
+}
+}
+
+
+.body .paw {
+  width: 50px;
+  height: 15px;
+  background-color: #000;
+  border-radius: 10px;
+
+  position: absolute;
+
+  bottom: 8px;
+  right: 17px;
+
+  transform: rotateZ(20deg);
+
+  animation: paw 9s ease-in-out 5s;
+}
+
+@keyframes paw {
+  0% {
+    right: 0px;
+
+    transform: rotateZ(35deg);
+  }
+  5% {
+    right: 0px;
+
+    transform: rotateZ(20deg);
+  }
+
+  10% { /* forward_1 */
+    right: -10px;
+
+    transform: rotateZ(15deg);
+  }
+  15% { /* back */
+    right: -3px;
+
+    transform: rotateZ(15deg);
+  }
+  20% { /* forward_2 */
+    right: -10px;
+
+    transform: rotateZ(15deg);
+  }
+  25%, 30% { /* STOP */
+    right: 5px;
+
+    transform: rotateZ(15deg);
+  }
+  35% { /* forward_3 */
+    right: -15px;
+
+    transform: rotateZ(14deg);
+  }
+  40% { /* back */
+    right:  -8px;
+
+    transform: rotateZ(20deg);
+  }
+  45% { /* forward_4 */
+    right: -15px;
+
+    transform: rotateZ(20deg);
+  }
+  50%, 55% { /* STOP */
+    right: 5px;
+
+    transform: rotateZ(20deg);
+  }
+  60% { /* forward_5 */
+    right: -20px;
+
+    transform: rotateZ(20deg);
+  }
+  65% { /* back */
+    right: -10px;
+
+    transform: rotateZ(15deg);
+  }
+  70% { /* forward_6 */
+    right: -20px;
+
+    transform: rotateZ(15deg);
+  }
+  75%, 80%, 85%, 90%, 92% { /* STOP */
+    bottom: 3px;
+    right: 17px;
+
+    transform: rotateZ(10deg);
+  }
+  95% { /* kick */
+    bottom: 3px;
+    right: -30px;
+
+    transform: rotateZ(10deg);
+  }
+  97% { /* kick */
+    bottom: 3px;
+    right: -30px;
+
+    transform: rotateZ(10deg);
+  }
+  100% { /* back */
+    right: 17px;
+
+    transform: rotateZ(10deg);
+  }
+}
+
+
+.cat .tail {
+  width: 120px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 10px;
+
+  position: absolute;
+
+  top: 82px;
+
+  animation: tail 2s ease 2s;
+}
+
+@keyframes tail {
+  from {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(20px);
+  }
+}
