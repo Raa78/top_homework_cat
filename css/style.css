@@ -7,12 +7,14 @@ body{
 /* тайvbyub delay для анимации*/
 
 :root {
-  --delay_cat_jump: 15.2s;
+  --delay_cat_jump: 15.3s;
 
-  --delay_head_jump: 14.8s;
+  --delay_head_jump: 15.1s;
 
   --delay_paw_down: 15s;
-  --delay_paw_forward: 15.7s;
+  --delay_paw_forward: 15.4s;
+
+  --delay_tail_jump: 15s;
 }
 
 
@@ -235,7 +237,7 @@ body{
   animation: paw_down 0.3s ease-in-out var(--delay_paw_down),
               paw_forward_left 0.3s linear var(--delay_paw_forward) forwards;
 
-  background: blue;
+  /* background: blue; */
 }
 
 .body .paw_right {
@@ -245,7 +247,7 @@ body{
               paw_down 0.3s ease-in-out var(--delay_paw_down),
               paw_forward_right 0.3s linear var(--delay_paw_forward) forwards;
 
-  background: red;
+  /* background: red; */
 }
 
 :root {
@@ -414,7 +416,8 @@ body{
 
   top: 82px;
 
-  animation: tail 2s ease 2s;
+  animation: tail 2s ease 2s,
+              tail_jump 1.5s linear var(--delay_tail_jump) forwards;
 }
 
 @keyframes tail {
@@ -426,5 +429,15 @@ body{
   }
   to {
     transform: translateX(20px);
+  }
+}
+
+@keyframes tail_jump {
+  from {
+
+    transform: translateY(-25px) rotate(15deg);
+  }
+  to {
+    transform: translateY(-25px) rotate(5deg)
   }
 }
