@@ -88,6 +88,7 @@ body{
 @keyframes head_jump {
   100% {
     top: 0px;
+    transform: rotate(-30deg);
   }
 }
 
@@ -404,6 +405,38 @@ body{
  }
 
 
+.body .feet_left,
+.body .feet_right {
+  width: 50px;
+  height: 15px;
+  background: #000;
+  border-radius: 10px;
+
+  position: absolute;
+
+  bottom: -3px;
+  left: 5px;
+
+  z-index: 2;
+}
+
+.body .feet_left {
+  bottom: 12px;
+
+  background: blue;
+}
+
+.body .feet_right {
+
+  background: red;
+}
+
+
+
+
+
+
+
  /* tail */
 
 .cat .tail {
@@ -417,7 +450,7 @@ body{
   top: 82px;
 
   animation: tail 2s ease 2s,
-              tail_jump 1.5s linear var(--delay_tail_jump) forwards;
+            tail_jump 1.5s linear var(--delay_tail_jump) forwards;
 }
 
 @keyframes tail {
