@@ -1,7 +1,18 @@
-
 body{
 	margin: 0;
 	background: #fff;
+}
+
+
+/* тайvbyub delay для анимации*/
+
+:root {
+  --delay_cat_jump: 15.2s;
+
+  --delay_head_jump: 14.8s;
+
+  --delay_paw_down: 15s;
+  --delay_paw_forward: 15.7s;
 }
 
 
@@ -15,37 +26,34 @@ body{
   left: 50%;
   margin-left: -150px;
 
-  animation: cat 1s linear 15.5s;
-  animation-fill-mode: forwards;
+  animation: cat_jump 1s ease-in-out var(--delay_cat_jump) forwards;
 }
 
-@keyframes cat {
+@keyframes cat_jump {
   0% {
-    /* top: 50px;
-    left: 50%;
-    transform: rotate(-0.08turn); */
     transform: translate(20px, -50px) rotate(-0.08turn);
   }
-  10% {
-    transform: translate(50px, -60px) rotate(-0.07turn);
+  50% {
+    transform: translate(130px, -80px) rotate(0turn);
   }
-  20% {
-    transform: translate(80px, -65px) rotate(-0.06turn);
+  90% {
+    opacity: 0.8;
   }
-  30% {
-    transform: translate(90px, -70px) rotate(-0.05turn);
+  92% {
+    opacity: 0.6;
   }
-  40% {
-    transform: translate(120px, -75px) rotate(-0.02turn);
+  94% {
+    opacity: 0.4;
   }
-  50%, 60%, 70% {
-    transform: translate(140px, -75px) rotate(0turn);
+  96% {
+    opacity: 0.3;
   }
-  80% {
-    transform: translate(170px, -25px) rotate(0.03turn);
+  98% {
+    opacity: 0.2;
   }
   100% {
-    transform: translate(250px, 100px) rotate(0.1turn);
+    transform: translate(270px, 100px) rotate(0.1turn);
+    opacity: 0.1;
   }
 }
 
@@ -66,7 +74,7 @@ body{
   z-index: 9999;
 
   animation: head 0.5s ease 1s forwards,
-              head_jump 0.5s ease 15s forwards;
+              head_jump 0.5s ease var(--delay_head_jump) forwards;
 }
 
 @keyframes head {
@@ -78,7 +86,6 @@ body{
 @keyframes head_jump {
   100% {
     top: 0px;
-    transform: rotate(20deg);
   }
 }
 
@@ -225,8 +232,8 @@ body{
   right: 25px;
   margin-left: 43px;
 
-  animation: paw_down 0.3s ease-in-out 15s,
-              paw_forward_left 0.3s linear 16s forwards;
+  animation: paw_down 0.3s ease-in-out var(--delay_paw_down),
+              paw_forward_left 0.3s linear var(--delay_paw_forward) forwards;
 
   background: blue;
 }
@@ -235,8 +242,8 @@ body{
   right: 11px;
 
   animation: paw_right 9s ease-in-out 5s,
-              paw_down 0.3s ease-in-out 15s,
-              paw_forward_right 0.3s linear 16s forwards;
+              paw_down 0.3s ease-in-out var(--delay_paw_down),
+              paw_forward_right 0.3s linear var(--delay_paw_forward) forwards;
 
   background: red;
 }
