@@ -15,27 +15,42 @@ body{
   left: 50%;
   margin-left: -150px;
 
-  animation: cat 1s ease 15s;
+  animation: cat 1s linear 15.5s;
   animation-fill-mode: forwards;
 }
 
-
 @keyframes cat {
-  100% {
-    top: 50px;
+  0% {
+    /* top: 50px;
     left: 50%;
-    transform: rotate(-0.08turn);
+    transform: rotate(-0.08turn); */
+    transform: translate(20px, -50px) rotate(-0.08turn);
   }
-  /* 90%{
-    transform: rotate(0.3turn);
-    transform: translate(100px, -30px);
-    opacity: 1;
+  10% {
+    transform: translate(50px, -60px) rotate(-0.07turn);
   }
-  100%{
-    transform: translate(100px, -30px);
-    opacity: 0;
-  } */
+  20% {
+    transform: translate(80px, -65px) rotate(-0.06turn);
+  }
+  30% {
+    transform: translate(90px, -70px) rotate(-0.05turn);
+  }
+  40% {
+    transform: translate(120px, -75px) rotate(-0.02turn);
+  }
+  50%, 60%, 70% {
+    transform: translate(140px, -75px) rotate(0turn);
+  }
+  80% {
+    transform: translate(170px, -25px) rotate(0.03turn);
+  }
+  100% {
+    transform: translate(250px, 100px) rotate(0.1turn);
+  }
 }
+
+
+/* head */
 
 .cat .head {
   width: 70px;
@@ -50,8 +65,8 @@ body{
 
   z-index: 9999;
 
-  animation: head 0.5s ease 1s;
-  animation-fill-mode: forwards;
+  animation: head 0.5s ease 1s forwards,
+              head_jump 0.5s ease 15s forwards;
 }
 
 @keyframes head {
@@ -60,8 +75,11 @@ body{
   }
 }
 
-.head .ears {
-  overflow: hidden;
+@keyframes head_jump {
+  100% {
+    top: 0px;
+    transform: rotate(20deg);
+  }
 }
 
 .head .ear_left,
@@ -126,12 +144,10 @@ body{
 
 .head .eye_left {
   margin-left: 22px;
-
 }
 
 .head .eye_right {
   margin-left: 16px;
-
 }
 
 @keyframes eyes {
@@ -142,7 +158,6 @@ body{
   50% {
     height: 5px;
     transform: translateY(4px);
-
   }
   100% {
     height: 10px;
@@ -151,10 +166,12 @@ body{
 }
 
 
+/* body */
+
 .cat .body {
   width: 120px;
   height: 70px;
-  background-color: #000;
+  background: #000;
   border-radius: 50px;
 
   position: absolute;
@@ -164,102 +181,136 @@ body{
 }
 
 .body svg {
-  animation: circle 0.5s ease-in-out 12s;
+  animation: circle 0.3s ease-in-out 12s;
   animation-iteration-count: 3;
 
 }
 
 @keyframes circle {
-0% { /* ↓ → */
-  transform: translate(-2px, -2px);
-}
-25% { /* ↑ */
-  transform: translate(-2px, -4px);
-}
-50% {  /* ↑ ← */
-  transform: translate(-4px, -4px);
+  0% { /* ↓ → */
+    transform: translate(-2px, -2px);
+  }
+  25% { /* ↑ */
+    transform: translate(-2px, -4px);
+  }
+  50% {  /* ↑ ← */
+    transform: translate(-4px, -4px);
 
+  }
+  75% { /* ← ↓ */
+    transform: translate(-4px, -2px);
+  }
+  100% { /* ↓ → */
+    transform: translate(-2px, -2px);
+  }
 }
-75% { /* ← ↓ */
-  transform: translate(-4px, -2px);
 
-}
-100% { /* ↓ → */
-  transform: translate(-2px, -2px);
-}
-}
 
+.body .paw_left,
+.body .paw_right {
 
-.body .paw {
   width: 50px;
   height: 15px;
-  background-color: #000;
+  background: #000;
   border-radius: 10px;
 
   position: absolute;
 
-  bottom: 8px;
-  right: 17px;
+  bottom: 12px;
 
-  transform: rotateZ(20deg);
-
-  animation: paw 9s ease-in-out 5s;
+  transform: rotateZ(45deg);
 }
 
-@keyframes paw {
+.body .paw_left {
+  right: 25px;
+  margin-left: 43px;
+
+  animation: paw_down 0.3s ease-in-out 15s,
+              paw_forward_left 0.3s linear 16s forwards;
+
+  background: blue;
+}
+
+.body .paw_right {
+  right: 11px;
+
+  animation: paw_right 9s ease-in-out 5s,
+              paw_down 0.3s ease-in-out 15s,
+              paw_forward_right 0.3s linear 16s forwards;
+
+  background: red;
+}
+
+:root {
+  --paw-bottom: 6px;
+  --paw-bottom_2: 2px;
+}
+
+@keyframes paw_right {
   0% {
     right: 0px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(35deg);
   }
   5% {
     right: 0px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
 
   10% { /* forward_1 */
     right: -10px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(15deg);
   }
   15% { /* back */
     right: -3px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(15deg);
   }
   20% { /* forward_2 */
     right: -10px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(15deg);
   }
   25%, 30% { /* STOP */
     right: 5px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(15deg);
   }
   35% { /* forward_3 */
     right: -15px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(14deg);
   }
   40% { /* back */
     right:  -8px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
   45% { /* forward_4 */
     right: -15px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
   50%, 55% { /* STOP */
     right: 5px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
   60% { /* forward_5 */
     right: -20px;
+    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
@@ -274,20 +325,19 @@ body{
     transform: rotateZ(15deg);
   }
   75%, 80%, 85%, 90%, 92% { /* STOP */
-    bottom: 3px;
     right: 17px;
-
+    bottom: var(--paw-bottom_2);
     transform: rotateZ(10deg);
   }
   95% { /* kick */
-    bottom: 3px;
     right: -30px;
+    bottom: var(--paw-bottom_2);
 
     transform: rotateZ(10deg);
   }
   97% { /* kick */
-    bottom: 3px;
     right: -30px;
+    bottom: var(--paw-bottom_2);
 
     transform: rotateZ(10deg);
   }
@@ -298,6 +348,54 @@ body{
   }
 }
 
+@keyframes paw_down {
+  5% {
+    bottom: 5px;
+
+    transform: rotateZ(45deg);
+  }
+  25% {
+    bottom: 0px;
+
+    transform: rotateZ(50deg);
+  }
+  50% {
+    bottom: -3px;
+
+    transform: rotateZ(50deg);
+  }
+  75% {
+    bottom: -5px;
+
+    transform: rotateZ(60deg);
+  }
+  100% {
+    bottom: -7px;
+
+    transform: rotateZ(70deg);
+  }
+ }
+
+ @keyframes paw_forward_left {
+  100% {
+    right: -11px;
+    bottom: -8px;
+
+    transform: rotateZ(30deg);
+  }
+ }
+
+ @keyframes paw_forward_right {
+  100% {
+    right: -15px;
+    bottom: 0;
+
+    transform: rotateZ(20deg);
+  }
+ }
+
+
+ /* tail */
 
 .cat .tail {
   width: 120px;
