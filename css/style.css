@@ -4,15 +4,17 @@ body{
 }
 
 
-/* тайvbyub delay для анимации*/
+/* тайминги delay для анимации*/
 
 :root {
   --delay_cat_jump: 15.3s;
 
   --delay_head_jump: 15.1s;
 
+  --dela_paw_kick: 5s;
   --delay_paw_down: 15s;
   --delay_paw_forward: 15.4s;
+  --delay_feet_jump: 15.34s;
 
   --delay_tail_jump: 15s;
 }
@@ -38,20 +40,14 @@ body{
   50% {
     transform: translate(130px, -80px) rotate(0turn);
   }
-  90% {
-    opacity: 0.8;
-  }
-  92% {
-    opacity: 0.6;
-  }
   94% {
-    opacity: 0.4;
+    opacity: 1;
   }
-  96% {
+  97% {
+    opacity: 0.5;
+  }
+  99% {
     opacity: 0.3;
-  }
-  98% {
-    opacity: 0.2;
   }
   100% {
     transform: translate(270px, 100px) rotate(0.1turn);
@@ -191,7 +187,7 @@ body{
 }
 
 .body svg {
-  animation: circle 0.3s ease-in-out 12s;
+  animation: circle 0.40s ease-in-out 12s;
   animation-iteration-count: 3;
 
 }
@@ -244,7 +240,7 @@ body{
 .body .paw_right {
   right: 11px;
 
-  animation: paw_right 9s ease-in-out 5s,
+  animation: paw_kick 9s ease-in-out var(--dela_paw_kick),
               paw_down 0.3s ease-in-out var(--delay_paw_down),
               paw_forward_right 0.3s linear var(--delay_paw_forward) forwards;
 
@@ -256,7 +252,7 @@ body{
   --paw-bottom_2: 2px;
 }
 
-@keyframes paw_right {
+@keyframes paw_kick {
   0% {
     right: 0px;
     bottom: var(--paw-bottom);
@@ -415,26 +411,33 @@ body{
   position: absolute;
 
   bottom: -3px;
-  left: 5px;
+  left: 6px;
 
-  z-index: 2;
+  animation: feet_jump 0.3s ease-in-out var(--delay_feet_jump) forwards;
 }
 
 .body .feet_left {
-  bottom: 12px;
-
-  background: blue;
-}
-
-.body .feet_right {
-
-  background: red;
+  margin-bottom: 13px;
 }
 
 
-
-
-
+@keyframes feet_jump {
+  0% {
+    transform: translate(0px,10px) rotate(30deg);
+  }
+  10% {
+    transform: translate(0px, 0px) rotate(50deg);
+  }
+  30% {
+    transform: translate(0px, 5px) rotate(100deg);
+  }
+  60% {
+    transform: translate(-5px, 5px) rotate(150deg);
+  }
+  100% {
+    transform: translate(-30px, 0px) rotate(165deg);
+  }
+}
 
 
  /* tail */
@@ -471,6 +474,6 @@ body{
     transform: translateY(-25px) rotate(15deg);
   }
   to {
-    transform: translateY(-25px) rotate(5deg)
+    transform: translateY(-30px) rotate(12deg)
   }
 }
