@@ -7,6 +7,8 @@ body{
 /* тайминги delay для анимации*/
 
 :root {
+  --delay_head_down: 1s;
+
   --delay_cat_jump: 15.3s;
 
   --delay_head_jump: 15.1s;
@@ -23,12 +25,14 @@ body{
 .cat {
   position: relative;
 
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: auto;
 
-  top: 100px;
+  /* top: 100px;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -150px; */
+
+  border: 1px solid #000;
 
   animation: cat_jump 1s ease-in-out var(--delay_cat_jump) forwards;
 }
@@ -61,21 +65,19 @@ body{
 .cat .head {
   width: 70px;
   height: 70px;
+
   background-color: #000;
   border-radius: 50%;
 
   position: absolute;
-
-  top: 0px;
   left: 126px;
-
   z-index: 9999;
 
-  animation: head 0.5s ease 1s forwards,
+  animation: head_down 0.5s ease var(--delay_head_down) forwards,
               head_jump 0.5s ease var(--delay_head_jump) forwards;
 }
 
-@keyframes head {
+@keyframes head_down {
   100% {
     top: 12px;
   }
@@ -93,11 +95,10 @@ body{
   width: 15px;
   height: 15px;
 
-  top: -2px;
+  background: #000;
 
   position: absolute;
-
-  background: #000;
+  top: -2px;
 }
 
 .head .ear_left {
@@ -476,4 +477,21 @@ body{
   to {
     transform: translateY(-30px) rotate(12deg)
   }
+}
+
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 200px;
+
+
+  display: flex;
+  justify-content: center;
+}
+
+/* logo */
+
+.logo img {
+
 }
