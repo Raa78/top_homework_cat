@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+
+
+/* Общие стили */
 body {
   box-sizing: border-box;
   margin: 0;
-  background: #fff;
+  background-color: #fff;
 }
 
 .container {
@@ -11,13 +15,15 @@ body {
 }
 
 
-/* тайминги delay для анимации*/
+/* Timings for animation */
 
 :root {
   --delay_head_down: 1s;
 
   --delay_cat_jump: 15.3s;
 
+  --dalay_ears_down: 1s;
+  --delay_eye_twink: 3s;
   --delay_head_jump: 15.1s;
 
   --dela_paw_kick: 5s;
@@ -25,27 +31,30 @@ body {
   --delay_paw_forward: 15.4s;
   --delay_feet_jump: 15.34s;
 
+  --delay_tail_wag: 2s;
   --delay_tail_jump: 15s;
 
   --delay_logo: 6.6s;
 }
 
 
-.cat {
-  position: relative;
+/* cat */
 
+.cat {
   width: 200px;
   height: 100px;
 
-  animation: cat_jump 1s ease-in-out var(--delay_cat_jump) forwards;
+  position: relative;
+
+  animation: cat_jump 1s linear var(--delay_cat_jump) forwards;
 }
 
 @keyframes cat_jump {
   0% {
-    transform: translate(20px, -50px) rotate(-0.08turn);
+    transform: translate(20px, -50px) rotate(-29deg);
   }
   50% {
-    transform: translate(130px, -80px) rotate(0turn);
+    transform: translate(150px, -80px) rotate(0deg);
   }
   94% {
     opacity: 1;
@@ -57,7 +66,7 @@ body {
     opacity: 0.3;
   }
   100% {
-    transform: translate(270px, 100px) rotate(0.1turn);
+    transform: translate(280px, 100px) rotate(36deg);
     opacity: 0;
   }
 }
@@ -74,10 +83,10 @@ body {
 
   position: absolute;
   left: 126px;
-  z-index: 9999;
+  z-index: 999;
 
   animation: head_down 0.5s ease var(--delay_head_down) forwards,
-              head_jump 0.5s ease var(--delay_head_jump) forwards;
+              head_jump 0.5s ease-in var(--delay_head_jump) forwards;
 }
 
 @keyframes head_down {
@@ -98,7 +107,7 @@ body {
   width: 15px;
   height: 15px;
 
-  background: #000;
+  background-color: #000;
 
   position: absolute;
   top: -2px;
@@ -106,13 +115,14 @@ body {
 
 .head .ear_left {
   margin-left: 10px;
-  transform: skew(30deg) rotate(25deg);
   margin-top: 2px;
 
-  animation: ears_left 0.2s ease 1.5s forwards;
+  transform: skew(30deg) rotate(25deg);
+
+  animation: ears_left_down 0.2s ease-in var(--dalay_ears_down) forwards;
 }
 
-@keyframes ears_left {
+@keyframes ears_left_down {
   100% {
     top: 5px;
     transform: skew(50deg) rotate(10deg);
@@ -121,16 +131,18 @@ body {
 
 .head .ear_right {
   margin-left: 44px;
-  transform: skew(-30deg) rotate(-25deg);
   margin-top: 2px;
 
-  animation: ears_right 0.2s ease 1.5s forwards;
+  transform: skew(-30deg) rotate(-25deg);
+
+  animation: ears_right_down 0.2s ease-in var(--dalay_ears_down) forwards;
 }
 
-@keyframes ears_right {
+@keyframes ears_right_down {
   100% {
     margin-top: 3px;
     margin-left: 46px;
+
     transform: skew(40deg, 35deg) rotate(30deg);
   }
 }
@@ -141,15 +153,16 @@ body {
 
 .head .eye_left,
 .head .eye_right {
-  background: #fff;
   width: 10px;
   height: 10px;
+
+  background: #fff;
   border-radius: 50%;
   margin-top: 23px;
 
   float: left;
 
-  animation: eyes 1s ease 3s;
+  animation: eyes 1s ease var(--delay_eye_twink);
 }
 
 .head .eye_left {
@@ -193,24 +206,22 @@ body {
 .body svg {
   animation: circle 0.40s ease-in-out 12s;
   animation-iteration-count: 3;
-
 }
 
 @keyframes circle {
-  0% { /* ↓ → */
+  0% { /* выводим за пределы body */
     transform: translate(-2px, -2px);
   }
   25% { /* ↑ */
     transform: translate(-2px, -4px);
   }
-  50% {  /* ↑ ← */
+  50% {  /* ← */
     transform: translate(-4px, -4px);
-
   }
-  75% { /* ← ↓ */
+  75% { /* ↓ */
     transform: translate(-4px, -2px);
   }
-  100% { /* ↓ → */
+  100% { /* → */
     transform: translate(-2px, -2px);
   }
 }
@@ -218,27 +229,25 @@ body {
 
 .body .paw_left,
 .body .paw_right {
-
   width: 50px;
   height: 15px;
+
   background: #000;
   border-radius: 10px;
 
   position: absolute;
-
   bottom: 12px;
 
   transform: rotateZ(45deg);
 }
 
 .body .paw_left {
-  right: 25px;
   margin-left: 43px;
+
+  right: 25px;
 
   animation: paw_down 0.3s ease-in-out var(--delay_paw_down),
               paw_forward_left 0.3s linear var(--delay_paw_forward) forwards;
-
-  /* background: blue; */
 }
 
 .body .paw_right {
@@ -247,80 +256,69 @@ body {
   animation: paw_kick 9s ease-in-out var(--dela_paw_kick),
               paw_down 0.3s ease-in-out var(--delay_paw_down),
               paw_forward_right 0.3s linear var(--delay_paw_forward) forwards;
-
-  /* background: red; */
-}
-
-:root {
-  --paw-bottom: 6px;
-  --paw-bottom_2: 2px;
 }
 
 @keyframes paw_kick {
   0% {
     right: 0px;
-    bottom: var(--paw-bottom);
+    bottom: 6px;
 
     transform: rotateZ(35deg);
   }
   5% {
     right: 0px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
 
+
   10% { /* forward_1 */
     right: -10px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(15deg);
   }
   15% { /* back */
     right: -3px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(15deg);
   }
   20% { /* forward_2 */
     right: -10px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(15deg);
   }
   25%, 30% { /* STOP */
     right: 5px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(15deg);
   }
+
+
   35% { /* forward_3 */
     right: -15px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(14deg);
   }
   40% { /* back */
     right:  -8px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
   45% { /* forward_4 */
     right: -15px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
   50%, 55% { /* STOP */
     right: 5px;
-    bottom: var(--paw-bottom);
 
     transform: rotateZ(20deg);
   }
+
+
   60% { /* forward_5 */
     right: -20px;
-    bottom: var(--paw-bottom);
+    bottom: 6px;
 
     transform: rotateZ(20deg);
   }
@@ -336,18 +334,19 @@ body {
   }
   75%, 80%, 85%, 90%, 92% { /* STOP */
     right: 17px;
-    bottom: var(--paw-bottom_2);
+    bottom: 2px;
     transform: rotateZ(10deg);
   }
+
+
   95% { /* kick */
     right: -30px;
-    bottom: var(--paw-bottom_2);
 
     transform: rotateZ(10deg);
   }
   97% { /* kick */
     right: -30px;
-    bottom: var(--paw-bottom_2);
+    bottom: 2px;
 
     transform: rotateZ(10deg);
   }
@@ -409,11 +408,11 @@ body {
 .body .feet_right {
   width: 50px;
   height: 15px;
+
   background: #000;
   border-radius: 10px;
 
   position: absolute;
-
   bottom: -3px;
   left: 6px;
 
@@ -449,15 +448,15 @@ body {
 .cat .tail {
   width: 120px;
   height: 20px;
+
   background-color: #000;
   border-radius: 10px;
 
   position: absolute;
-
   top: 82px;
 
-  animation: tail 2s ease 2s,
-            tail_jump 1.5s linear var(--delay_tail_jump) forwards;
+  animation: tail 3s ease var(--delay_tail_wag),
+              tail_jump 1s ease var(--delay_tail_jump) forwards;
 }
 
 @keyframes tail {
@@ -485,39 +484,45 @@ body {
 
 /* logo */
 
-.logo img {
+.cat span {
+  font-family: Delius Swash Caps, cursive;
+  font-size: 40px;
+  color: #004466;
+  line-height: 0.5;
+
   position: absolute;
   bottom: 0;
-  left: 182px;
+  left: 171px;
+  z-index: 9999;
 
   animation: logo 8s linear var(--delay_logo) forwards;
 }
 
 @keyframes logo {
   0% {
-    left: 185px;
+    left: 180px;
   }
 
   29% {
-    left: 185px;
+    left: 180px;
   }
   30% {
-    left: 192px;
+    left: 186px;
     transform: rotate(0deg);
   }
 
   54% {
-    left: 192px;
+    left: 186px;
     transform: rotate(0deg);
   }
   60% {
-    left: 198px;
+    left: 192px;
     transform: rotate(5deg);
   }
 
  85% {
     bottom: 0;
-    left: 198px;
+    left: 192px;
     transform: rotate(5deg);
   }
 
@@ -525,13 +530,13 @@ body {
     opacity: 1;
   }
   97% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
   99% {
-    opacity: 0.3;
+    opacity: 0.5;
   }
   100% {
-    bottom: -40px;
+    bottom: -100px;
     left: 300px;
     transform: rotate(140deg);
 
